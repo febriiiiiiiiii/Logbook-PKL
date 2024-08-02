@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Angkatan;
+use App\Models\PembimbingLapangan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,10 +22,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        for ($i=2022; $i < 2025 ; $i++) { 
-            # code...
+        // for ($i=2022; $i < 2025 ; $i++) { 
+        //     # code...
 
-            Angkatan::create(['periode' => $i]);
-        }
+        //     Angkatan::create(['periode' => $i]);
+        // }
+
+        PembimbingLapangan::factory(10)->create();
     }
 }
