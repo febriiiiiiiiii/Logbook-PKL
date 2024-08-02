@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Angkatan;
 use App\Models\PembimbingLapangan;
+use App\Models\PembimbingSekolah;
 use App\Models\Sekolah;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -31,6 +32,10 @@ class DatabaseSeeder extends Seeder
 
         // PembimbingLapangan::factory(10)->create();
 
-        Sekolah::factory(10)->create();
+        // Sekolah::factory(10)->create();
+
+        PembimbingSekolah::factory(10)->create();
+
+
     }
 }
