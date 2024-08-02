@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class siswa extends Model
+class Siswa extends Model
 {
     use HasFactory;
-
-    protected $table = 'siswas';
 
     protected $fillable = [
         'nama' ,
@@ -23,16 +21,16 @@ class siswa extends Model
 
     public function angkatan()
     {
-        return $this->belongsTo(Angkatan::class, 'angkatan_id');
+        return $this->belongsTo(Angkatan::class);
     }
 
     public function jurusanPembimbingSekolah()
     {
-        return $this->belongsTo(JurusanPembimbingSekolah::class, 'jurusan_pembimbing_sekolah_id');
+        return $this->belongsTo(JurusanPembimbingSekolah::class);
     }
 
     public function pembimbingLapangan()
     {
-        return $this->belongsTo(PembimbingLapangan::class, 'pembimbing_lapangan_id');
+        return $this->belongsTo(PembimbingLapangan::class);
     }
 }

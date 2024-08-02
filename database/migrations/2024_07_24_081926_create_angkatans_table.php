@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('angkatans', function (Blueprint $table) {
             $table->id();
-            $table->year('periode');
+            $table->year('periode')->unique();
             $table->timestamps();
         });
     }

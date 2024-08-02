@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sekolahs', function (Blueprint $table) {
-            //Mengubah tipe data colum alamat menjadi text
             $table->text('alamat')->change();
         });
     }
@@ -23,7 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sekolahs', function (Blueprint $table) {
-            //Mengembalikan tipe data colum alamat menjadi string
             $table->string('alamat')->change();
         });
     }

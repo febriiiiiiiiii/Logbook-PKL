@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('alamat');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('telephone');
-            $table->foreignId('angkatan_id')->constrained('angkatans')->onDelete('cascade');
-            $table->foreignId('jurusan_pembimbing_sekolah_id')->constrained('jurusan_pembimbing_sekolahs')->onDelete('cascade');
-            $table->foreignId('pembimbing_lapangan_id')->constrained('pembimbing_lapangans')->onDelete('cascade');
+            $table->foreignId('angkatan_id')->constrained('angkatans')->restrictOnDelete();
+            $table->foreignId('jurusan_pembimbing_sekolah_id')->constrained('jurusan_pembimbing_sekolahs')->restrictOnDelete();
+            $table->foreignId('pembimbing_lapangan_id')->constrained('pembimbing_lapangans')->restrictOnDelete();
             $table->timestamps();
         });
     }

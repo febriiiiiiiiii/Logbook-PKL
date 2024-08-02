@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pembimbing_sekolahs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('telephone');
             $table->text('alamat');
             $table->timestamps();
