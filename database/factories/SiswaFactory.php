@@ -24,7 +24,7 @@ class SiswaFactory extends Factory
             //
             'nama'=>fake()->name(),
             'alamat'=>fake()->address(),
-            'email'=>fake()->safeEmail(),
+            'email'=>fake()->unique()->safeEmail(),
             'telephone'=>fake()->phoneNumber(),
             'angkatan_id'=> Angkatan::factory(),
             'jurusan_pembimbing_sekolah_id'=>JurusanPembimbingSekolah::factory(),

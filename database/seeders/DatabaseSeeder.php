@@ -9,6 +9,7 @@ use App\Models\JurusanSekolah;
 use App\Models\PembimbingLapangan;
 use App\Models\PembimbingSekolah;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -46,7 +47,8 @@ class DatabaseSeeder extends Seeder
         
         // JurusanPembimbingSekolah::factory(10)->create();
 
-        Angkatan::factory(10)->create();
+        // Angkatan::factory(10)->create();
 
+        Siswa::factory()->count(10)->create();
     }
 }
