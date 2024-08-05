@@ -18,8 +18,8 @@ class JurusanFactory extends Factory
     {
         return [
             //
-            'kode' => fake() -> unique() -> currencyCode(),
-            'nama' => fake() -> name(30),
+            'kode' => fake()->unique()->bothify('JRS###'),
+            'nama' => fake()->name(30),
         ];
     }
 }
