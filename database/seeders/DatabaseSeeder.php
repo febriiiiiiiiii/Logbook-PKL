@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Angkatan;
 use App\Models\Jurusan;
+use App\Models\JurusanSekolah;
 use App\Models\PembimbingLapangan;
 use App\Models\PembimbingSekolah;
 use App\Models\Sekolah;
@@ -37,9 +38,9 @@ class DatabaseSeeder extends Seeder
 
         // PembimbingSekolah::factory(10)->create();
 
-        Jurusan::factory(7)->create();
+        // Jurusan::factory(7)->create();
 
-
-
+        JurusanSekolah::factory(10)->create();
+        
     }
 }
