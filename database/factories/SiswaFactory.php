@@ -21,7 +21,6 @@ class SiswaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
             'nama'=>fake()->name(),
             'alamat'=>fake()->address(),
             'email'=>fake()->unique()->safeEmail(),

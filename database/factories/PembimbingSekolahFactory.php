@@ -17,11 +17,10 @@ class PembimbingSekolahFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-            'nama' => fake() -> firstNameMale(),
-            'email' => fake() -> unique() -> freeEmail(),
-            'telephone' => fake() -> phoneNumber(),
-            'alamat' => fake() -> streetAddress(),
+            'nama'=>fake()->firstNameFemale(),
+            'email'=>fake()->unique()->safeEmail(),
+            'telephone'=>fake()->phoneNumber(),
+            'alamat'=>fake()->address(),
         ];
     }
 }

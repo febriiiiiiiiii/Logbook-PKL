@@ -17,9 +17,8 @@ class JurusanFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-            'kode' => fake()->unique()->bothify('JRS###'),
-            'nama' => fake()->name(30),
+            'kode'=>fake()->unique()->lexify('???'),
+            'nama'=>fake()->jobTitle(),
         ];
     }
 }

@@ -9,8 +9,6 @@ class Angkatan extends Model
 {
     use HasFactory;
 
-    protected $table = 'angkatans';
-
     protected $fillable = [
         'periode'
     ];

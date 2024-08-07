@@ -49,6 +49,15 @@ class DatabaseSeeder extends Seeder
 
         // Angkatan::factory(10)->create();
 
-        Siswa::factory()->count(10)->create();
+        // Siswa::factory()->count(10)->create();
+
+        // Angkatan::factory(20)->create();
+        // Jurusan::factory(20)->create();
+        // JurusanPembimbingSekolah::factory(20)->create();
+        // JurusanSekolah::factory(20)->create();
+        // PembimbingLapangan::factory(20)->create();
+        // PembimbingSekolah::factory(20)->create();
+        // Sekolah::factory(20)->create();
+        Siswa::factory(20)->create();
     }
 }

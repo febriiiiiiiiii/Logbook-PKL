@@ -17,10 +17,10 @@ class PembimbingLapanganFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake() -> name(),
-            'email' => fake() -> unique() -> safeEmail(),
-            'telephone' => fake() -> phoneNumber(),
-            'alamat' => fake() -> address(),
+            'nama'=>fake()->firstNameMale(),
+            'email'=>fake()->unique()->safeEmail(),
+            'telephone'=>fake()->phoneNumber(),
+            'alamat'=>fake()->address(),
         ];
     }
 }

@@ -17,10 +17,10 @@ class SekolahFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake() -> company(),
-            'email' => fake() -> unique() -> safeEmail(),
-            'telephone' => fake() -> phoneNumber(),
-            'alamat' => fake() -> address(),
+            'nama'=>fake()->company(),
+            'email'=>fake()->unique()->safeEmail(),
+            'telephone'=>fake()->phoneNumber(),
+            'alamat'=>fake()->address(),
         ];
     }
 }
