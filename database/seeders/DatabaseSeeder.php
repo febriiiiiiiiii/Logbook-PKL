@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
         // PembimbingLapangan::factory(20)->create();
         // PembimbingSekolah::factory(20)->create();
         // Sekolah::factory(20)->create();
-        Siswa::factory(20)->create();
+
+        Siswa::factory(10)->create();
     }
 }

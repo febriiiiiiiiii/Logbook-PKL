@@ -17,7 +17,7 @@ class AngkatanFactory extends Factory
     public function definition(): array
     {
         return [
-            'periode'=>fake()->unique()->numberBetween(2000, 2024),
+            'periode'=>fake()->unique()->numberBetween(2000, 2050),
         ];
     }
 }
