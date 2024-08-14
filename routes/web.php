@@ -81,22 +81,20 @@ Route::get('/s1', function () {
     $user = User::first();
     dd($user);
 });
+
 Route::get('/s2', function () {
     $user = User::all();
     dd($user);
 });
+
 Route::get('/s3', function () {
-    $users = User::all()->filter(function ($user) {
+    $users = User::all()->where(function ($user) {
         return $user->id > 5;
     });
-
     dd($users);
 });
 
 Route::get('/s4', function () {
-    $users = User::where('id', '>', 5)
-                 ->take(10)
-                 ->get();
-
+    $users = User::where('id', '>', 5)->limit(10)->get();
     dd($users);
 });
