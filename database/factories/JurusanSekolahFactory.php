@@ -19,8 +19,8 @@ class JurusanSekolahFactory extends Factory
     public function definition(): array
     {
         return [
-            'sekolah_id' => Sekolah::factory(),
-            'jurusan_id' => Jurusan::factory(),
+            'sekolah_id' => Sekolah::inRandomOrder()->first()->id,
+            'jurusan_id' => Jurusan::inRandomOrder()->first()->id,
         ];
     }
 }

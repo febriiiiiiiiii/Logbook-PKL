@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Angkatan>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Jadwal>
  */
-class AngkatanFactory extends Factory
+class JadwalFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class AngkatanFactory extends Factory
     public function definition(): array
     {
         return [
-            'periode'=>fake()->unique()->numberBetween(1976, 2045),
+            'tanggal'=>fake()->date(),
         ];
     }
 }

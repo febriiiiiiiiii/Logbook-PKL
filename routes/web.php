@@ -1,5 +1,6 @@
 <?php
-
+use App\Models\User;
+use App\Http\Controllers\SekolahController;
 use App\Models\Jurusan;
 use App\Models\Sekolah;
 use Illuminate\Support\Facades\DB;
@@ -69,4 +70,33 @@ Route::get('/soal4', function () {
         ->get();
 
     dd($sekolah);
+});
+
+Route::get('/sekolah', [SekolahController::class, 'index']);
+Route::get('/projects', function () {
+    return view('home', ['title' => 'Jurusan Page', 'jurusans' => Jurusan::all()]);
+});
+
+Route::get('/s1', function () {
+    $user = User::first();
+    dd($user);
+});
+Route::get('/s2', function () {
+    $user = User::all();
+    dd($user);
+});
+Route::get('/s3', function () {
+    $users = User::all()->filter(function ($user) {
+        return $user->id > 5;
+    });
+
+    dd($users);
+});
+
+Route::get('/s4', function () {
+    $users = User::where('id', '>', 5)
+                 ->take(10)
+                 ->get();
+
+    dd($users);
 });

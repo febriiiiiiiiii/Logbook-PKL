@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Angkatan extends Model
+class Jadwal extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'periode'
+        'tanggal'
     ];
 
-    public function siswa()
+    public function kegiatan()
     {
-        return $this->hasMany(Siswa::class);
+        return $this->hasMany(kegiatan::class);
     }
 }

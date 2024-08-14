@@ -15,4 +15,9 @@ class PembimbingLapangan extends Model
         'telephone' ,
         'alamat',
     ];
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 }

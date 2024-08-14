@@ -23,4 +23,9 @@ class JurusanPembimbingSekolah extends Model
     {
         return $this->belongsTo(JurusanSekolah::class);
     }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 }
