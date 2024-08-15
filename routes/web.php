@@ -3,6 +3,7 @@ use App\Models\User;
 use App\Http\Controllers\SekolahController;
 use App\Models\Jurusan;
 use App\Models\Sekolah;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -103,4 +104,42 @@ Route::get('/tugas2', function() {
 
     $soal12 = User::where('name', 'like', 'A%')->orWhere('email', 'like', 'A%')->orWhere('name', 'like', '%admin%')->orWhere('email', 'like', '%admin%')->get()->toArray();
     dump($soal12);
+});
+
+Route::get('/tugaslatihan3', function() {
+    $latihan1 = Siswa::first()->toArray();
+    dump($latihan1);
+
+    $latihan2 = Siswa::all()->toArray();
+    dump($latihan2);
+
+    $latihan3 = Siswa::where('id', '>', 5)->get()->toArray();
+    dump($latihan3);
+
+    $latihan4 = Siswa::where('id', '>', 5)->limit(10)->get()->toArray();
+    dump($latihan4);
+
+    $latihan5 = Siswa::where('id', '>', 5)->limit(10)->orderBy('nama')->orderBy('email')->get()->toArray();
+    dump($latihan5);
+
+    $latihan6 = Siswa::where('id', '>', 5)->limit(10)->orderBy('created_at')->get()->toArray();
+    dump($latihan6);
+
+    $latihan7 = Siswa::where('id', '>', 5)->first()->toArray();
+    dump($latihan7);
+
+    $latihan8 = Siswa::find(5)->toArray();;
+    dump($latihan8);
+
+    $latihan9 = Siswa::where('id', 5)->select('nama', 'email')->get()->toArray();
+    dump($latihan9);
+
+    $latihan10 = Siswa::where('nama', 'like', 'A%')->orWhere('email', 'like', 'A%')->get()->toArray();
+    dump($latihan10);
+
+    $latihan11 = Siswa::where('nama', 'like', 'A%')->orWhere('email', 'like', 'A%')->where('id', '>', 5)->get()->toArray();
+    dump($latihan11);
+
+    $latihan12 = Siswa::where('nama', 'like', 'A%')->orWhere('email', 'like', 'A%')->orWhere('nama', 'like', '%admin%')->orWhere('email', 'like', '%admin%')->get()->toArray();
+    dump($latihan12);
 });

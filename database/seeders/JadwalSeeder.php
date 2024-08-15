@@ -13,6 +13,6 @@ class JadwalSeeder extends Seeder
      */
     public function run(): void
     {
-        Jadwal::factory()->count(5)->create();
+        Jadwal::factory()->count(100)->create();
     }
 }
