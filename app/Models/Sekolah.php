@@ -15,4 +15,9 @@ class Sekolah extends Model
         'email',
         'telephone',
     ];
+
+    public function jurusanSekolahs()
+    {
+        return $this->hasMany(JurusanSekolah::class);
+    }
 }

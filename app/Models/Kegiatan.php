@@ -16,13 +16,13 @@ class Kegiatan extends Model
         'deskripsi'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
-    public function jadwal()
+    public function jadwals()
     {
-        return $this->belongsTo(Jadwal::class);
+        return $this->belongsToMany(Jadwal::class);
     }
 }

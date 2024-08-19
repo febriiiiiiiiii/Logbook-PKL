@@ -14,5 +14,16 @@ class PembimbingSekolah extends Model
         'email',
         'telephone',
         'alamat',
+        'jurusan_sekolah_id	'
     ];
+
+    public function jurusanSekolah()
+    {
+        return $this->belongsTo(JurusanSekolah::class);
+    }
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class);
+    }
 }

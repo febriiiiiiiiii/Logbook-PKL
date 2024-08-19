@@ -15,7 +15,7 @@ class Siswa extends Model
         'email' ,
         'telephone' ,
         'angkatan_id' ,
-        'jurusan_pembimbing_sekolah' ,
+        'pembimbing_sekolah_id' ,
         'pembimbing_lapangan_id',
     ];
 
@@ -24,9 +24,9 @@ class Siswa extends Model
         return $this->belongsTo(Angkatan::class);
     }
 
-    public function jurusanPembimbingSekolah()
+    public function pembimbingSekolah()
     {
-        return $this->belongsTo(JurusanPembimbingSekolah::class);
+        return $this->belongsTo(PembimbingSekolah::class);
     }
 
     public function pembimbingLapangan()

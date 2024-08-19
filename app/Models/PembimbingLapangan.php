@@ -16,7 +16,7 @@ class PembimbingLapangan extends Model
         'alamat',
     ];
 
-    public function siswa()
+    public function siswas()
     {
         return $this->hasMany(Siswa::class);
     }

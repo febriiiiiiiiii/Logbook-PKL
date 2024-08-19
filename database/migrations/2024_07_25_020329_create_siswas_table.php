@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('telephone');
             $table->foreignId('angkatan_id')->constrained('angkatans')->restrictOnDelete();
-            $table->foreignId('jurusan_pembimbing_sekolah_id')->constrained('jurusan_pembimbing_sekolahs')->restrictOnDelete();
+            $table->foreignId('pembimbing_sekolah_id')->constrained('pembimbing_sekolahs')->restrictOnDelete();
             $table->foreignId('pembimbing_lapangan_id')->constrained('pembimbing_lapangans')->restrictOnDelete();
             $table->timestamps();
         });

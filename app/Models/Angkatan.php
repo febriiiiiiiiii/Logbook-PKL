@@ -13,7 +13,7 @@ class Angkatan extends Model
         'periode'
     ];
 
-    public function siswa()
+    public function siswas()
     {
         return $this->hasMany(Siswa::class);
     }

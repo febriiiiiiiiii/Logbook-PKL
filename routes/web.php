@@ -1,7 +1,10 @@
 <?php
 use App\Models\User;
 use App\Http\Controllers\SekolahController;
+use App\Models\Jadwal;
 use App\Models\Jurusan;
+use App\Models\PembimbingLapangan;
+use App\Models\PembimbingSekolah;
 use App\Models\Sekolah;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
@@ -106,7 +109,7 @@ Route::get('/tugas2', function() {
     dump($soal12);
 });
 
-Route::get('/tugaslatihan3', function() {
+Route::get('/tugas3', function() {
     $latihan1 = Siswa::first()->toArray();
     dump($latihan1);
 
@@ -142,4 +145,62 @@ Route::get('/tugaslatihan3', function() {
 
     $latihan12 = Siswa::where('nama', 'like', 'A%')->orWhere('email', 'like', 'A%')->orWhere('nama', 'like', '%admin%')->orWhere('email', 'like', '%admin%')->get()->toArray();
     dump($latihan12);
+});
+
+Route::get('/tugas4', function() {
+    dump('Mencari Jurusan yang memiliki JurusanSekolah');
+    dump(Jurusan::has('jurusanSekolahs')->get()->toArray());
+
+    dump('Mencari Jurusan yang tidak memiliki JurusanSekolah');
+    dump(Jurusan::doesntHave('jurusanSekolahs')->get()->toArray());
+
+    dump('Menncari jurusan pada sekolah dengan id 65');
+    dump(Jurusan::whereHas('jurusanSekolahs', function ($query) {
+        $query->where('sekolah_id', 65);
+    })->get()->toArray());
+
+    dump('Mencari daftar siswa yang terdaftar pada periode angkatan 2005');
+    dump(Siswa::whereHas('angkatan', function ($query) {
+        $query->where('periode', 2005);
+    })->get());
+
+    dump('Mencari pembimbing sekolah yang membimbing siswa pada periode angkatan 2024');
+    dump(PembimbingSekolah::whereHas('siswas.angkatan', function ($query) {
+        $query->where('periode', 2024);
+    })->get()->toArray());
+
+    dump('Mencari sekolah asal dari pembimbing sekolah bernama Lola)');
+    dump(Sekolah::whereHas('jurusanSekolahs.pembimbingSekolahs', function ($query) {
+        $query->where('nama', 'Lola');
+    })->get()->toArray());
+
+    dump('Mencari daftar siswa yang terdaftar di sekolah "Leffler Ltd" dengan jurusan "Fire Fighter"');
+    dump(Siswa::whereHas('pembimbingSekolah.jurusanSekolah', function ($query) {
+        $query->where('sekolah_id', 81)->where('jurusan_id', 76);
+    })->get()->toArray());
+
+    dump('Mencari daftar siswa yang dibimbing oleh Winona (PembimbingSekolah) pada periode angkatan 2044');
+    dump(Siswa::whereHas('pembimbingSekolah', function ($query) {
+        $query->where('nama', 'Winona');
+    })->whereHas('angkatan', function ($query) {
+        $query->where('periode', 2044);
+    })->get()->toArray());    
+
+    dump('Mencari daftar siswa yang berasal dari sekolah "O`Conner and Sons", jurusan "Computer Operator", dan dibimbing oleh PembimbingLapangan "Adrien"');
+    dump(Siswa::whereHas('pembimbingSekolah.jurusanSekolah', function ($query) {
+        $query->where('sekolah_id', 137)->where('jurusan_id', 106);
+    })->whereHas('pembimbingLapangan', function ($query) {
+        $query->where('nama', 'Adrien');
+    })->get()->toArray());
+    
+    dump('Mencaari semua PembimbingLapangan yang membimbing siswa dengan email yang memiliki domain @example.com');
+    dump(PembimbingLapangan::whereHas('siswas', function ($query) {
+        $query->where('email', 'like', '%@example.com');
+    })->get()->toArray());
+
+    dump('Mencari Jadwal yang Terkait dengan Kegiatan Tertentu');
+    dump(Jadwal::whereHas('kegiatans', function($query) {
+        $query->where('judul', 'et');
+    })->get()->toArray());
+
 });

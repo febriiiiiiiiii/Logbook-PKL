@@ -13,7 +13,7 @@ class Jadwal extends Model
         'tanggal'
     ];
 
-    public function kegiatan()
+    public function kegiatans()
     {
         return $this->hasMany(kegiatan::class);
     }

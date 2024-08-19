@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Angkatan;
 use App\Models\JurusanPembimbingSekolah;
 use App\Models\PembimbingLapangan;
+use App\Models\PembimbingSekolah;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +26,7 @@ class SiswaFactory extends Factory
             'email'=>fake()->unique()->safeEmail(),
             'telephone'=>fake()->phoneNumber(),
             'angkatan_id'=> Angkatan::inRandomOrder()->first()->id,
-            'jurusan_pembimbing_sekolah_id'=>JurusanPembimbingSekolah::inRandomOrder()->first()->id,
+            'pembimbing_sekolah_id'=>PembimbingSekolah::inRandomOrder()->first()->id,
             'pembimbing_lapangan_id'=>PembimbingLapangan::inRandomOrder()->first()->id,
         ];
     }

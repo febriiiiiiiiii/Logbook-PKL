@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             JurusanSeeder::class,
             JurusanSekolahSeeder::class,
             PembimbingSekolahSeeder::class,
-            JurusanPembimbingSekolahSeeder::class,
+            // JurusanPembimbingSekolahSeeder::class,
             PembimbingLapanganSeeder::class,
             SiswaSeeder::class,
             JadwalSeeder::class,

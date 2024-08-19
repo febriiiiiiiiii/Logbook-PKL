@@ -14,17 +14,17 @@ class JurusanPembimbingSekolah extends Model
         'jurusan_sekolah_id',
     ];
 
-    public function pembimbingSekolah()
+    public function pembimbingSekolahs()
     {
         return $this->belongsTo(PembimbingSekolah::class);
     }
 
-    public function jurusanSekolah()
+    public function jurusanSekolahs()
     {
         return $this->belongsTo(JurusanSekolah::class);
     }
 
-    public function siswa()
+    public function siswas()
     {
         return $this->hasMany(Siswa::class);
     }

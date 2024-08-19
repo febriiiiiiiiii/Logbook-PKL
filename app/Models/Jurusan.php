@@ -14,7 +14,7 @@ class Jurusan extends Model
         'nama',
     ];
 
-    public function jurusanSekolah()
+    public function jurusanSekolahs()
     {
         return $this->hasMany(JurusanSekolah::class);
     }

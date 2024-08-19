@@ -14,13 +14,18 @@ class JurusanSekolah extends Model
         'jurusan_id',
     ];
 
-    public function sekolah()
+    public function sekolahs()
     {
-        return $this->belongsTo(Sekolah::class);
+        return $this->belongsToMany(Sekolah::class);
     }
 
-    public function jurusan()
+    public function jurusans()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsToMany(Jurusan::class);
+    }
+
+    public function pembimbingSekolahs()
+    {
+        return $this->hasMany(PembimbingSekolah::class);
     }
 }

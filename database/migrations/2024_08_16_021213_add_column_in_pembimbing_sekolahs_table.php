@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-            Schema::create('jurusans', function (Blueprint $table) {
-                $table->id();
-                $table->string('kode')->unique();
-                $table->string('nama');
-                $table->timestamps();
-            });
+        Schema::table('pembimbing_sekolahs', function (Blueprint $table) {
+            $table->foreignId('jurusan_sekolah_id')->constrained('jurusan_sekolahs')->restrictOnDelete();
+        });
     }
 
     /**
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurusans');
+        Schema::table('pembimbing_sekolahs', function (Blueprint $table) {
+            $table ->dropColumn('jurusan_sekolah_id');
+        });
     }
 };
