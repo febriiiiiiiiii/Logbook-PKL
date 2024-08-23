@@ -12,9 +12,8 @@ class SekolahController extends Controller
      */
     public function index()
     {
-        //
         $sekolahs = Sekolah::all(); 
-        return view('home', compact('sekolahs'));
+        return view('sekolah', compact('sekolahs'));
     }
 
     /**

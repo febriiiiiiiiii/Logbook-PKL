@@ -11,13 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('about');
 });
 
 Route::get('/sekolah', [SekolahController::class, 'index']);
-Route::get('/projects', function () {
-    return view('home', ['title' => 'Jurusan Page', 'jurusans' => Jurusan::all()]);
-});
 
 Route::get('/tugas1', function () {
     $sekolahNama = 'Fahey PLC';
