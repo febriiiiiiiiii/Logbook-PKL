@@ -23,6 +23,7 @@ class PembimbingSekolahFactory extends Factory
             'telephone'=>fake()->phoneNumber(),
             'alamat'=>fake()->address(),
             'jurusan_sekolah_id'=>JurusanSekolah::inRandomOrder()->first()->id,
+            'gender'=>fake()->randomElement(['P','L']),
         ];
     }
 }

@@ -199,5 +199,11 @@ Route::get('/tugas4', function() {
     dump(Jadwal::whereHas('kegiatans', function($query) {
         $query->where('judul', 'et');
     })->get()->toArray());
+    
+    dump('aaaaaaaaaaaaaaaaaaa');
+    dump(Siswa::whereRelation('angkatan', 'periode', 2005)->get());
+
+    dump(User::find(1));
+    dump(User::query()->find(1)->delete());
 
 });

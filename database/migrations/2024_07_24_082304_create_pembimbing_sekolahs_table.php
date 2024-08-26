@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('angkatans', function (Blueprint $table) {
+        Schema::create('pembimbing_sekolahs', function (Blueprint $table) {
             $table->id();
-            $table->year('periode')->unique();
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('telephone');
+            $table->text('alamat');
+            $table->enum('gender', ['P','L']);
             $table->timestamps();
         });
     }
