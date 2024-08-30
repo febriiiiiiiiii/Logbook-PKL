@@ -14,7 +14,11 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::get('/sekolah', [SekolahController::class, 'index']);
+Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
+Route::get('/sekolah/{id}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
+Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
+Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.delete');
+
 
 Route::get('/tugas1', function () {
     $sekolahNama = 'Fahey PLC';

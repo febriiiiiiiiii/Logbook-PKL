@@ -12,7 +12,8 @@ class SekolahController extends Controller
      */
     public function index()
     {
-        $sekolahs = Sekolah::all(); 
+        $sekolahs = Sekolah::all();
+
         return view('sekolah', compact('sekolahs'));
     }
 
@@ -45,7 +46,9 @@ class SekolahController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sekolah=Sekolah::query()->findOrFail($id);
+
+        return view('editsekolah', compact('sekolah'));
     }
 
     /**
@@ -53,7 +56,23 @@ class SekolahController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'alamat' => 'required|string|max:200',
+            'email' => 'required|email|max:100',
+            'telephone' => 'required|string|max:20',
+        ]);
+
+        $sekolah = [
+            'nama' => $request->input('nama'),
+            'alamat' => $request->input('alamat'),
+            'email' => $request->input('email'),
+            'telephone' => $request->input('telephone'),
+        ];
+
+        Sekolah::query()->where('id', $id)->update($sekolah);
+
+        return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -61,6 +80,14 @@ class SekolahController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sekolah = Sekolah::query()->find($id);
+
+        if ($sekolah->jurusanSekolahs()->exists()) {
+            return redirect()->back()->with('error', 'Tidak dapat menghapus data karena terdapat relasi dengan data lain.');
+        }
+
+        Sekolah::query()->where('id', $id)->delete();
+    
+        return redirect()->route('sekolah.index')->with('success', 'Data berhasil dihapus.');
     }
 }
