@@ -30,7 +30,23 @@ class SekolahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'alamat' => 'required|string|max:200',
+            'email' => 'required|string|max:100',
+            'telephone' => 'required|string|max:20',
+        ]);
+
+        $sekolah = [
+            'nama' => $request->input('nama'),
+            'alamat' => $request->input('alamat'),
+            'email' => $request->input('email'),
+            'telephone' => $request->input('telephone'),
+        ];
+
+        Sekolah::create($sekolah);
+
+        return redirect()->route('sekolah.index')->with('success', 'Berhasil menambahkan data baru.');
     }
 
     /**

@@ -15,6 +15,7 @@ Route::get('/', function () {
 });
 
 Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
+Route::post('/sekolah', [SekolahController::class, 'store'])->name('sekolah.post');
 Route::get('/sekolah/{id}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
 Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
 Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.delete');
