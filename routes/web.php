@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\JurusanController;
 use App\Models\User;
 use App\Http\Controllers\SekolahController;
 use App\Models\Jadwal;
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('about');
 });
+
+Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
+Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit'])->name('jurusan.edit');
+Route::put('/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
+Route::delete('jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.delete');
 
 Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
 Route::post('/sekolah', [SekolahController::class, 'store'])->name('sekolah.post');
