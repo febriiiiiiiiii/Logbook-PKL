@@ -31,10 +31,26 @@ class SekolahController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:100',
-            'alamat' => 'required|string|max:200',
-            'email' => 'required|string|max:100',
-            'telephone' => 'required|string|max:20',
+            'nama' => 'required|string|min:3|max:100',
+            'alamat' => 'required|string|min:3|max:200',
+            'email' => 'required|string||min:3|max:100',
+            'telephone' => 'required|string|min:3|max:20',
+        ], [
+            'nama.required' => 'Nama wajib diisi.',
+            'nama.min' => 'Nama minimal terdiri dari 3 karakter.',
+            'nama.max' => 'Nama maksimal terdiri dari 100 karakter.',
+        
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.min' => 'Alamat minimal terdiri dari 3 karakter.',
+            'alamat.max' => 'Alamat maksimal terdiri dari 200 karakter.',
+        
+            'email.required' => 'Email wajib diisi.',
+            'email.min' => 'Email minimal terdiri dari 3 karakter.',
+            'email.max' => 'Email maksimal terdiri dari 100 karakter.',
+        
+            'telephone.required' => 'Telepon wajib diisi.',
+            'telephone.min' => 'Telepon minimal terdiri dari 3 karakter.',
+            'telephone.max' => 'Telepon maksimal terdiri dari 20 karakter.',
         ]);
 
         $sekolah = [

@@ -30,7 +30,25 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required|string|min:3|max:100',
+            'nama' => 'required|string|max:100',
+        ], [
+            'kode.required' => 'Kode jurusan wajib diisi.',
+            'kode.min' => 'Kode jurusan minimal 3 karakter.',
+            'kode.max' => 'Kode jurusan maksimal 100 karakter.',
+            'nama.required'=> 'Nama jurusan wajib diisi.',
+            'nama.max'=> 'Nama jurusan maksimal 100 karakter.',
+        ]);
+
+        $jurusan = [
+            'kode' => $request->input('kode'),
+            'nama' => $request->input('nama'),
+        ];
+
+        Jurusan::create($jurusan);
+
+        return redirect()->route('jurusan.index')->with('success', 'berhasil membuat data jurusan');
     }
 
     /**
