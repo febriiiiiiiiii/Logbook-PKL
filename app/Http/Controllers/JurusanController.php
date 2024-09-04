@@ -12,7 +12,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusans = Jurusan::all();
+        $jurusans = Jurusan::orderBy('created_at', 'desc')->get();
 
         return view('data.jurusan', compact('jurusans'));
     }

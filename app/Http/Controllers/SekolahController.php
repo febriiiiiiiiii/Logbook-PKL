@@ -12,7 +12,7 @@ class SekolahController extends Controller
      */
     public function index()
     {
-        $sekolahs = Sekolah::all();
+        $sekolahs = Sekolah::orderBy('created_at', 'desc')->get();
 
         return view('sekolah', compact('sekolahs'));
     }
