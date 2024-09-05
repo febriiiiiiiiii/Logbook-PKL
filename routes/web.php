@@ -16,18 +16,9 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
-Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan.post');
-Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit'])->name('jurusan.edit');
-Route::put('/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
-Route::delete('jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.delete');
+Route::resource('jurusan', JurusanController::class);
 
-Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
-Route::post('/sekolah', [SekolahController::class, 'store'])->name('sekolah.post');
-Route::get('/sekolah/{id}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
-Route::put('/sekolah/{id}', [SekolahController::class, 'update'])->name('sekolah.update');
-Route::delete('/sekolah/{id}', [SekolahController::class, 'destroy'])->name('sekolah.delete');
-
+Route::resource('sekolah', SekolahController::class);
 
 Route::get('/tugas1', function () {
     $sekolahNama = 'Fahey PLC';

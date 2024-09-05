@@ -33,7 +33,7 @@
                                 <span class="sr-only">Close modal</span>
                             </button>
                         </div>
-                        <form class="p-4 md:p-5" action="{{ route('sekolah.post') }}" method="POST">
+                        <form class="p-4 md:p-5" action="{{ route('sekolah.store') }}" method="POST">
                             @csrf
                             @if ($errors->any())
                                 <script>
@@ -202,7 +202,7 @@
                                     </button>
                                 </form>
 
-                                <form action="{{ route('sekolah.delete', $sekolah->id) }}" method="POST"
+                                <form action="{{ route('sekolah.destroy', $sekolah->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin akan menghapus data?')">
                                     @csrf
                                     @method('DELETE')
@@ -216,10 +216,8 @@
                                         </svg>
                                         <span>Delete</span>
                                     </button>
-
                                 </form>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>

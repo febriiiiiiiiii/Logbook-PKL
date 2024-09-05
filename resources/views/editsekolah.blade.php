@@ -6,7 +6,6 @@
             <form action="{{ route('sekolah.update', $sekolah->id) }}" method="POST" class="space-y-6">
                 @csrf
                 @method('PUT')
-
                 <div>
                     <label for="nama" class="block text-gray-700 text-sm font-semibold mb-2">Nama Sekolah:</label>
                     <input type="text" name="nama" value="{{ $sekolah->nama }}"
