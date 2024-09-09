@@ -12,7 +12,7 @@ class SekolahController extends Controller
      */
     public function index()
     {
-        $sekolahs = Sekolah::orderBy('created_at', 'desc')->get();
+        $sekolahs = Sekolah::orderBy('created_at', 'desc')->paginate(10);
 
         return view('sekolah', compact('sekolahs'));
     }
@@ -30,7 +30,7 @@ class SekolahController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'nama' => 'required|string|min:3|max:100',
             'alamat' => 'required|string|min:3|max:200',
             'email' => 'required|string||min:3|max:100',
@@ -53,14 +53,7 @@ class SekolahController extends Controller
             'telephone.max' => 'Telepon maksimal terdiri dari 20 karakter.',
         ]);
 
-        $sekolah = [
-            'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat'),
-            'email' => $request->input('email'),
-            'telephone' => $request->input('telephone'),
-        ];
-
-        Sekolah::create($sekolah);
+        Sekolah::create($validate);
 
         return redirect()->route('sekolah.index')->with('success', 'Berhasil menambahkan data baru.');
     }
@@ -88,21 +81,16 @@ class SekolahController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $sekolah = Sekolah::query()->findOrFail($id);
+
+        $validate= $request->validate([
             'nama' => 'required|string|max:100',
             'alamat' => 'required|string|max:200',
             'email' => 'required|email|max:100',
             'telephone' => 'required|string|max:20',
         ]);
 
-        $sekolah = [
-            'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat'),
-            'email' => $request->input('email'),
-            'telephone' => $request->input('telephone'),
-        ];
-
-        Sekolah::query()->where('id', $id)->update($sekolah);
+        $sekolah->update($validate);
 
         return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui');
     }
@@ -118,7 +106,7 @@ class SekolahController extends Controller
             return redirect()->back()->with('error', 'Tidak dapat menghapus data karena terdapat relasi dengan data lain.');
         }
 
-        Sekolah::query()->where('id', $id)->delete();
+        $sekolah->delete();
     
         return redirect()->route('sekolah.index')->with('success', 'Data berhasil dihapus.');
     }

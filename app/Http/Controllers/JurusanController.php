@@ -12,7 +12,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusans = Jurusan::orderBy('created_at', 'desc')->get();
+        $jurusans = Jurusan::orderBy('created_at', 'desc')->paginate(20);
 
         return view('data.jurusan', compact('jurusans'));
     }
@@ -30,7 +30,7 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'kode' => 'required|string|min:3|max:100',
             'nama' => 'required|string|max:100',
         ], [
@@ -41,12 +41,7 @@ class JurusanController extends Controller
             'nama.max'=> 'Nama jurusan maksimal 100 karakter.',
         ]);
 
-        $jurusan = [
-            'kode' => $request->input('kode'),
-            'nama' => $request->input('nama'),
-        ];
-
-        Jurusan::create($jurusan);
+        Jurusan::create($validate);
 
         return redirect()->route('jurusan.index')->with('success', 'berhasil membuat data jurusan');
     }
@@ -65,6 +60,7 @@ class JurusanController extends Controller
     public function edit(string $id)
     {
         $jurusan = Jurusan::query()->findOrFail($id);
+
         return view('data.editjurusan', compact('jurusan'));
     }
 
@@ -73,17 +69,15 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+
+        $jurusan = Jurusan::query()->findOrFail($id);
+
+        $validate = $request->validate([
             'kode' => 'required|string|max:100',
             'nama' => 'required|string|max:100',
         ]);
 
-        $jurusan = [
-            'kode' => $request->input('kode'),
-            'nama' => $request->input('nama'),
-        ];
-
-        Jurusan::query()->where('id', $id)->update($jurusan);
+        $jurusan->update($validate);
 
         return redirect()->route('jurusan.index')->with('success', 'Bershasil Update Data');
     }
@@ -99,7 +93,8 @@ class JurusanController extends Controller
             return redirect()->back()->with('error', 'Data tidak dapat  dihapus');
         }
 
-        Jurusan::query()->where('id', $id)->delete();
+        $jurusan->delete();
+        
         return redirect()->route('jurusan.index')->with('success', 'Berhasil menghapus data');
     }
 }

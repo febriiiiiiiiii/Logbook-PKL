@@ -184,7 +184,6 @@
                             <td class="px-6 py-4">
                                 {{ $sekolah->email }}
                             </td>
-                            </td>
                             <td class="px-6 py-4">
                                 {{ $sekolah->telephone }}
                             </td>
@@ -222,6 +221,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="mt-4">
+            {{ $sekolahs->links() }}
         </div>
     </div>
 @endsection

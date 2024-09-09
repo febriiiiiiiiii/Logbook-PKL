@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PembimbingLapangan;
 use Illuminate\Http\Request;
 
 class PembimbingLapanganController extends Controller
@@ -11,7 +12,8 @@ class PembimbingLapanganController extends Controller
      */
     public function index()
     {
-        //
+        $pembimbingLapangans = PembimbingLapangan::all();
+        return view('pembimbinglapangan', compact('pembimbingLapangans'));
     }
 
     /**

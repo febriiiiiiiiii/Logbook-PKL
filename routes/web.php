@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\PembimbingLapanganController;
 use App\Models\User;
 use App\Http\Controllers\SekolahController;
 use App\Models\Jadwal;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('about');
 });
+// Route::resource('pembimbinglapangan', PembimbingLapangan::class);
+
+Route::resource('coba', PembimbingLapanganController::class);
 
 Route::resource('jurusan', JurusanController::class);
 

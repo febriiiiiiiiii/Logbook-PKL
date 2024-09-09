@@ -119,37 +119,13 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="/sekolah"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Sekolah</a>
-                        </li>
-                        <li>
-                            <a href="/jurusan"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Jurusan</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Angkatan</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pembimbing
-                                Lapangan</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pembimbing
-                                Sekolah</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Jurusan
-                                Jekolah</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Siswa</a>
-                        </li>
+                        <x-sidebarlink href='#'>Angkatan</x-sidebarlink>
+                        <x-sidebarlink href='/jurusan'>Jurusan</x-sidebarlink>
+                        <x-sidebarlink href='#'>Jurusan Sekolah</x-sidebarlink>
+                        <x-sidebarlink href='/sekolah'>Sekolah</x-sidebarlink>
+                        <x-sidebarlink href='#'>Pembimbing Lapangan</x-sidebarlink>
+                        <x-sidebarlink href='#'>Pembimbing Sekolah</x-sidebarlink>
+                        <x-sidebarlink href='#'>Siswa</x-sidebarlink>
                     </ul>
                 </li>
                 <li>
