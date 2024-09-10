@@ -48,21 +48,16 @@ class JurusanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Jurusan $jurusan)
     {
-        $jurusan = Jurusan::query()->findOrFail($id);
-
         return view('data.editjurusan', compact('jurusan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJurusanRequest $request, string $id)
+    public function update(UpdateJurusanRequest $request, Jurusan $jurusan)
     {
-
-        $jurusan = Jurusan::query()->findOrFail($id);
-
         $jurusan->update($request->validated());
 
         return redirect()->route('jurusan.index')->with('success', 'Bershasil Update Data');
@@ -71,10 +66,8 @@ class JurusanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jurusan $jurusan)
     {
-        $jurusan = Jurusan::query()->find($id);
-
         if ($jurusan->jurusanSekolahs()->exists()) {
             return redirect()->back()->with('error', 'Data tidak dapat  dihapus');
         }

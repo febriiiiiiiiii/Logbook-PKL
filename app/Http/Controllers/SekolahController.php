@@ -48,20 +48,16 @@ class SekolahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sekolah $sekolah)
     {
-        $sekolah=Sekolah::query()->findOrFail($id);
-
         return view('editsekolah', compact('sekolah'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSekolahRequest $request, string $id)
+    public function update(UpdateSekolahRequest $request, Sekolah $sekolah)
     {
-        $sekolah = Sekolah::query()->findOrFail($id);
-
         $sekolah->update($request->validated());
         
         return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui');
@@ -70,10 +66,8 @@ class SekolahController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sekolah $sekolah)
     {
-        $sekolah = Sekolah::query()->find($id);
-
         if ($sekolah->jurusanSekolahs()->exists()) {
             return redirect()->back()->with('error', 'Tidak dapat menghapus data karena terdapat relasi dengan data lain.');
         }
