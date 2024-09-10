@@ -32,13 +32,7 @@ class JurusanController extends Controller
     {
         $validate = $request->validate([
             'kode' => 'required|string|min:3|max:100',
-            'nama' => 'required|string|max:100',
-        ], [
-            'kode.required' => 'Kode jurusan wajib diisi.',
-            'kode.min' => 'Kode jurusan minimal 3 karakter.',
-            'kode.max' => 'Kode jurusan maksimal 100 karakter.',
-            'nama.required'=> 'Nama jurusan wajib diisi.',
-            'nama.max'=> 'Nama jurusan maksimal 100 karakter.',
+            'nama' => 'required|string|min:3|max:100',
         ]);
 
         Jurusan::create($validate);
@@ -73,8 +67,8 @@ class JurusanController extends Controller
         $jurusan = Jurusan::query()->findOrFail($id);
 
         $validate = $request->validate([
-            'kode' => 'required|string|max:100',
-            'nama' => 'required|string|max:100',
+            'kode' => 'required|string|min:3|max:100',
+            'nama' => 'required|string|min:3|max:100',
         ]);
 
         $jurusan->update($validate);
