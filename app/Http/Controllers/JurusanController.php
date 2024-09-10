@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreJurusanRequest;
+use App\Http\Requests\UpdateJurusanRequest;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
@@ -28,14 +30,9 @@ class JurusanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreJurusanRequest $request)
     {
-        $validate = $request->validate([
-            'kode' => 'required|string|min:3|max:100',
-            'nama' => 'required|string|min:3|max:100',
-        ]);
-
-        Jurusan::create($validate);
+        Jurusan::create($request->validated());
 
         return redirect()->route('jurusan.index')->with('success', 'berhasil membuat data jurusan');
     }
@@ -61,17 +58,12 @@ class JurusanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateJurusanRequest $request, string $id)
     {
 
         $jurusan = Jurusan::query()->findOrFail($id);
 
-        $validate = $request->validate([
-            'kode' => 'required|string|min:3|max:100',
-            'nama' => 'required|string|min:3|max:100',
-        ]);
-
-        $jurusan->update($validate);
+        $jurusan->update($request->validated());
 
         return redirect()->route('jurusan.index')->with('success', 'Bershasil Update Data');
     }

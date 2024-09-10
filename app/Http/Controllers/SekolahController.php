@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSekolahRequest;
+use App\Http\Requests\UpdateSekolahRequest;
 use App\Models\Sekolah;
 use Illuminate\Http\Request;
 
@@ -28,16 +30,9 @@ class SekolahController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSekolahRequest $request)
     {
-        $validate = $request->validate([
-            'nama' => 'required|string|min:3|max:100',
-            'alamat' => 'required|string|min:3|max:200',
-            'email' => 'required|string||min:3|max:100',
-            'telephone' => 'required|string|min:3|max:20',
-        ]);
-
-        Sekolah::create($validate);
+        Sekolah::create($request->validated());
 
         return redirect()->route('sekolah.index')->with('success', 'Berhasil menambahkan data baru.');
     }
@@ -63,19 +58,12 @@ class SekolahController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSekolahRequest $request, string $id)
     {
         $sekolah = Sekolah::query()->findOrFail($id);
 
-        $validate= $request->validate([
-            'nama' => 'required|string|min:3|max:100',
-            'alamat' => 'required|string|min:3|max:200',
-            'email' => 'required|email|min:3|max:100',
-            'telephone' => 'required|string|min:3|max:20',
-        ]);
-
-        $sekolah->update($validate);
-
+        $sekolah->update($request->validated());
+        
         return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui');
     }
 
