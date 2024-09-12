@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('about');
 });
-// Route::resource('pembimbinglapangan', PembimbingLapangan::class);
 
 Route::resource('coba', PembimbingLapanganController::class);
 

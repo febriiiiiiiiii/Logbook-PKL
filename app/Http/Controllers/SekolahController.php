@@ -14,7 +14,7 @@ class SekolahController extends Controller
      */
     public function index()
     {
-        $sekolahs = Sekolah::orderBy('created_at', 'desc')->paginate(10);
+        $sekolahs = Sekolah::query()->latest()->get();
 
         return view('sekolah', compact('sekolahs'));
     }

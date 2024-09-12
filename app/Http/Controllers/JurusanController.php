@@ -14,7 +14,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusans = Jurusan::orderBy('created_at', 'desc')->paginate(20);
+        $jurusans = Jurusan::query()->latest()->get();
 
         return view('data.jurusan', compact('jurusans'));
     }
