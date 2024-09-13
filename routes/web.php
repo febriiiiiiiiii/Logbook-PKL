@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::resource('coba', PembimbingLapanganController::class);
+Route::resource('pembimbingLapangan', PembimbingLapanganController::class);
 
 Route::resource('jurusan', JurusanController::class);
 
