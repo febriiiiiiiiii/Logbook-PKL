@@ -4,6 +4,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PembimbingLapanganController;
 use App\Models\User;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\Serverside\JurusanServersideController;
 use App\Models\Jadwal;
 use App\Models\Jurusan;
 use App\Models\PembimbingLapangan;
@@ -17,11 +18,13 @@ Route::get('/', function () {
     return view('about');
 });
 
-Route::resource('pembimbingLapangan', PembimbingLapanganController::class);
-
 Route::resource('jurusan', JurusanController::class);
 
+Route::resource('jurusanserverside', JurusanServersideController::class);
+
 Route::resource('sekolah', SekolahController::class);
+
+Route::resource('pembimbingLapangan', PembimbingLapanganController::class);
 
 Route::get('/tugas1', function () {
     $sekolahNama = 'Fahey PLC';

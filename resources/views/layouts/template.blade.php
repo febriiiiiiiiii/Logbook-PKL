@@ -220,11 +220,8 @@
 
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#myDataTable').DataTable();
-        });
-    </script>
+    @yield('scripts')
+
 </body>
 
 </html>
