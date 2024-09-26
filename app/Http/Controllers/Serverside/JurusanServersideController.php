@@ -17,14 +17,14 @@ class JurusanServersideController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $jurusans = Jurusan::query()->latest();
+            $jurusanserverside = Jurusan::query()->latest();
     
-            return DataTables::of($jurusans)
+            return DataTables::of($jurusanserverside)
                 ->addIndexColumn()
-                ->addColumn('action', function ($jurusan) {
+                ->addColumn('action', function ($jurusanserverside) {
                     return '
-                        <a href="'.route('jurusan.edit', $jurusan->id).'" class="text-blue-600">Edit</a>
-                        <form action="'.route('jurusan.destroy', $jurusan->id).'" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin akan menghapus data?\')">
+                        <a href="'.route('jurusanserverside.edit', $jurusanserverside->id).'" class="text-blue-600">Edit</a>
+                        <form action="'.route('jurusanserverside.destroy', $jurusanserverside->id).'" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin akan menghapus data?\')">
                             '.csrf_field().method_field('DELETE').'
                             <button type="submit" class="text-red-600">Delete</button>
                         </form>';
@@ -57,7 +57,7 @@ class JurusanServersideController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $jurusanserverside)
     {
         //
     }
@@ -65,17 +65,17 @@ class JurusanServersideController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Jurusan $id)
+    public function edit(Jurusan $jurusanserverside)
     {
-        return view('data.editjurusan', compact('jurusan'));
+        return view('data.editjurusan', compact('jurusanserverside'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJurusanRequest $request, Jurusan $id)
+    public function update(UpdateJurusanRequest $request, Jurusan $jurusanserverside)
     {
-        $id->update($request->validated());
+        $jurusanserverside->update($request->validated());
 
         return redirect()->route('jurusanserverside.index')->with('success', 'Bershasil Update Data');
     }
@@ -83,13 +83,13 @@ class JurusanServersideController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jurusan $id)
+    public function destroy(Jurusan $jurusanserverside)
     {
-        if ($id->jurusanSekolahs()->exists()) {
+        if ($jurusanserverside->jurusanSekolahs()->exists()) {
             return redirect()->back()->with('error', 'Data tidak dapat  dihapus');
         }
 
-        $id->delete();
+        $jurusanserverside->delete();
         
         return redirect()->route('jurusanserverside.index')->with('success', 'Berhasil menghapus data');
     }
