@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('about');
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('about');
+})->middleware(['auth', 'verified']);
 
 Route::resource('jurusan', JurusanController::class);
 
