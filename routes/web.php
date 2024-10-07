@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PembimbingLapanganController;
+use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\Serverside\JurusanServersideController;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('about');
 })->middleware(['auth', 'verified']);
+
+Route::resource('profile', ProfileController::class);
 
 Route::resource('jurusan', JurusanController::class);
 

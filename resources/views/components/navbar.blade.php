@@ -43,8 +43,7 @@
                         </div>
 
                         <ul class="py-1" role="none">
-                            <x-menu-item url="#" :hasForm="false">Profile</x-menu-item>
-                            <x-menu-item url="#" :hasForm="false">Settings</x-menu-item>
+                            <x-menu-item url="{{ route('profile.index') }}" :hasForm="false">Profile</x-menu-item>
                             <x-menu-item url="{{ route('logout') }}" :hasForm="true" formId="logout-form"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</x-menu-item>
                         </ul>
