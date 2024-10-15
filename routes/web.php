@@ -19,11 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/a', function () {
+    return view('overview');
+});
+
 Route::get('/dashboard', function () {
     return view('about');
 })->middleware(['auth', 'verified']);
 
-Route::resource('profile', ProfileController::class);
+Route::singleton('profile', ProfileController::class);
 
 Route::resource('jurusan', JurusanController::class);
 

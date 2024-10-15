@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mt-10 p-4 sm:ml-64">
-        <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 border border-gray-200">
+        <div class="max-w-full mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 border border-gray-200">
             <h1 class="text-3xl font-bold mb-6 text-gray-800">Edit Profile</h1>
 
             @if ($errors->any())
@@ -31,6 +31,24 @@
                     <input type="email" name="email" id="email"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         value="{{ old('email', $user->email) }}">
+                </div>
+
+                <div class="mb-4">
+                    <label for="current_password" class="block text-sm font-medium text-gray-700">Password lama (kosongkan jika tidak ingin mengganti password)</label>
+                    <input type="password" name="current_password" id="current_password"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="mb-4">
+                    <label for="new_password" class="block text-sm font-medium text-gray-700">Password Baru (opsional)</label>
+                    <input type="password" name="new_password" id="new_password"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="mb-4">
+                    <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password Baru (opsional)</label>
+                    <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
 
                 <div class="flex justify-end">
