@@ -34,26 +34,26 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="current_password" class="block text-sm font-medium text-gray-700">Password lama (kosongkan jika tidak ingin mengganti password)</label>
+                    <label for="current_password" class="block text-sm font-medium text-gray-700">Password Anda</label>
                     <input type="password" name="current_password" id="current_password"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
 
                 <div class="mb-4">
-                    <label for="new_password" class="block text-sm font-medium text-gray-700">Password Baru (opsional)</label>
+                    <label for="new_password" class="block text-sm font-medium text-gray-700">Password Baru</label>
                     <input type="password" name="new_password" id="new_password"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
 
                 <div class="mb-4">
-                    <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password Baru (opsional)</label>
+                    <label for="new_password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
                     <input type="password" name="new_password_confirmation" id="new_password_confirmation"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
 
                 <div class="flex justify-end">
                     <button type="submit"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-500 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Update Profile
                     </button>
                 </div>

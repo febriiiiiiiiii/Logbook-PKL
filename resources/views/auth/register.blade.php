@@ -27,6 +27,12 @@
             <x-submit-button>
                 Daftar
             </x-submit-button>
+
+            <div class="flex justify-center items-center">
+                <p class="text-sm text-gray-600">Already have an account?
+                    <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700 font-medium">Login</a>
+                </p>
+            </div>
         </form>
     </div>
 </body>
