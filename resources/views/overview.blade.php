@@ -16,9 +16,9 @@
                     <a href="#" class="text-2xl font-bold text-indigo-600">Digitallok</a>
                 </div>
                 <div>
-                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600 px-4">Login</a>
-                    <a href="{{ route('register') }}"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Sign Up</a>
+                    {{-- <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600 px-4">Login</a> --}}
+                    <a href="{{ route('login') }}"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Login</a>
                 </div>
             </div>
         </nav>

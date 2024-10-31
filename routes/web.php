@@ -23,6 +23,21 @@ Route::get('/dashboard', function () {
     return view('about');
 })->middleware(['auth', 'verified']);
 
+Route::get('/admin', function () {
+    return "<h1>halo admin</h1>";
+})->middleware(['auth', 'verified', 'role:admin']);
+
+Route::delete('/jurusan/{jurusan}', [SekolahController::class, 'destroy'])
+    ->middleware('can:hapus-jurusan');
+
+Route::resource('sekolah', SekolahController::class)
+    ->except(['destroy'])
+    ->middleware(['auth']);
+
+Route::delete('/sekolah/{sekolah}', [SekolahController::class, 'destroy'])
+    ->name('sekolah.destroy')
+    ->middleware(['auth', 'can:hapus-jurusan']);
+
 Route::singleton('profile', ProfileController::class);
 
 Route::resource('jurusan', JurusanController::class);
