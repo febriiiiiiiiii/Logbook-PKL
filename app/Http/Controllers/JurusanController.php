@@ -14,9 +14,11 @@ class JurusanController extends Controller
      */
     public function index()
     {
+        abort_if(!auth()->user()->can('lihat-jurusan'), 403);
+
         $jurusans = Jurusan::query()->latest()->get();
 
-        return view('data.jurusan', compact('jurusans'));
+        return view('jurusan.jurusan', compact('jurusans'));
     }
 
     /**
@@ -32,6 +34,8 @@ class JurusanController extends Controller
      */
     public function store(StoreJurusanRequest $request)
     {
+        abort_if(!auth()->user()->can('tambah-jurusan'), 403);
+
         Jurusan::create($request->validated());
 
         return redirect()->route('jurusan.index')->with('success', 'berhasil membuat data jurusan');
@@ -50,7 +54,9 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        return view('data.editjurusan', compact('jurusan'));
+        abort_if(!auth()->user()->can('edit-jurusan'), 403);
+
+        return view('jurusan.editjurusan', compact('jurusan'));
     }
 
     /**
@@ -58,6 +64,8 @@ class JurusanController extends Controller
      */
     public function update(UpdateJurusanRequest $request, Jurusan $jurusan)
     {
+        abort_if(!auth()->user()->can('edit-jurusan'), 403);
+
         $jurusan->update($request->validated());
 
         return redirect()->route('jurusan.index')->with('success', 'Bershasil Update Data');
@@ -68,6 +76,8 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
+        abort_if(!auth()->user()->can('hapus-jurusan'), 403);
+
         if ($jurusan->jurusanSekolahs()->exists()) {
             return redirect()->back()->with('error', 'Data tidak dapat  dihapus');
         }

@@ -14,27 +14,27 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Permission::create(['name'=>'tambah-user']);
-        // Permission::create(['name'=>'edit-user']);
-        // Permission::create(['name'=>'hapus-user']);
-        // Permission::create(['name'=>'lihat-user']);
-        
-        Permission::create(['name'=>'tambah-jurusan']);
-        Permission::create(['name'=>'edit-jurusan']);
-        Permission::create(['name'=>'hapus-jurusan']);
-        Permission::create(['name'=>'lihat-jurusan']);
-        
-        Role::create(['name'=>'admin']);
-        Role::create(['name'=>'staf']);
+        $permissions = [
+            'lihat-jurusan', 'tambah-jurusan', 'edit-jurusan', 'hapus-jurusan',
+            'lihat-sekolah', 'tambah-sekolah', 'edit-sekolah', 'hapus-sekolah',
+        ];
 
-        $roleAdmin = Role::findByName('admin');
-        $roleAdmin->givePermissionTo('tambah-jurusan');
-        $roleAdmin->givePermissionTo('edit-jurusan');
-        $roleAdmin->givePermissionTo('hapus-jurusan');
-        $roleAdmin->givePermissionTo('lihat-jurusan');
+        foreach($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
 
-        $roleStaf = Role::findByName('staf');
-        $roleStaf->givePermissionTo('edit-jurusan');
-        $roleStaf->givePermissionTo('lihat-jurusan');
+        $adminSuper = Role::firstOrCreate(['name' => 'admin-super']);
+        $adminPKL = Role::firstOrCreate(['name' => 'admin-PKL']);
+        $pembimbingLapangan = Role::firstOrCreate(['name' => 'pembimbing-lapangan']);
+        $pembimbingSekolah = Role::firstOrCreate(['name' => 'pembimbing-sekolah']);
+        $siswa = Role::firstOrCreate(['name' => 'siswa']);
+
+        $adminPKL->givePermissionTo([
+            'lihat-jurusan', 'tambah-jurusan', 'edit-jurusan', 'hapus-jurusan',
+            'lihat-sekolah', 'tambah-sekolah', 'edit-sekolah', 'hapus-sekolah',
+        ]);
+
+        $siswa->givePermissionTo(['lihat-sekolah']);
+
     }
 }

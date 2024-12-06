@@ -23,12 +23,6 @@
             <x-submit-button>
                 Login
             </x-submit-button>
-
-            <div class="flex justify-center items-center">
-                <p class="text-sm text-gray-600">Don't have an account?
-                    <a href="{{ route('register') }}" class="text-blue-500 hover:text-blue-700 font-medium">Sign Up</a>
-                </p>
-            </div>
         </form>
     </div>
 </body>

@@ -15,23 +15,19 @@ class SekolahController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $sekolah = Sekolah::query()->latest();
-            
-            return DataTables::of($sekolah)
-                ->addIndexColumn()
-                ->addColumn('action', function ($sekolah) {
-                    return '
-                        <a href="'.route('sekolah.edit', $sekolah->id).'" class="text-blue-600">Edit</a>
-                        <form action="'.route('sekolah.destroy', $sekolah->id).'" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin akan menghapus data?\')">
-                            '.csrf_field().method_field('DELETE').'
-                            <button type="submit" class="text-red-600">Delete</button>
-                        </form>';
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        if (!$request->ajax()) {
+            return view('sekolah');
         }
-        return view('sekolah');
+
+        $sekolah = Sekolah::query()->latest();
+
+        return DataTables::of($sekolah)
+            ->addIndexColumn()
+            ->addColumn('action', function ($sekolah) {
+                return view('sekolah.action_buttons', compact('sekolah'))->render();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
 
