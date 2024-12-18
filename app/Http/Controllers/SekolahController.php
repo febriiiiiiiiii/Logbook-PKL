@@ -16,7 +16,7 @@ class SekolahController extends Controller
     public function index(Request $request)
     {
         if (!$request->ajax()) {
-            return view('sekolah');
+            return view('sekolah.sekolah');
         }
 
         $sekolah = Sekolah::query()->latest();
@@ -46,7 +46,7 @@ class SekolahController extends Controller
     {
         Sekolah::create($request->validated());
 
-        return redirect()->route('sekolah.index')->with('success', 'Berhasil menambahkan data baru.');
+        return redirect()->route('sekolah.index')->with('success', 'Berhasil menambahkan data sekolah.');
     }
 
     /**
@@ -62,7 +62,7 @@ class SekolahController extends Controller
      */
     public function edit(Sekolah $sekolah)
     {
-        return view('editsekolah', compact('sekolah'));
+        return view('sekolah.editsekolah', compact('sekolah'));
     }
 
     /**
@@ -72,7 +72,7 @@ class SekolahController extends Controller
     {
         $sekolah->update($request->validated());
         
-        return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('sekolah.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -80,12 +80,12 @@ class SekolahController extends Controller
      */
     public function destroy(Sekolah $sekolah)
     {
-        if (!auth()->user()->can('hapus-jurusan')) {
+        if (!auth()->user()->can('hapus-sekolah')) {
             return redirect()->route('sekolah.index')->with('error', 'Anda tidak memiliki izin untuk menghapus data sekolah.');
         }
 
         if ($sekolah->jurusanSekolahs()->exists()) {
-            return redirect()->back()->with('error', 'Tidak dapat menghapus data karena terdapat relasi dengan data lain.');
+            return redirect()->back()->with('error', 'Data tidak dapat  dihapus.');
         }
 
         $sekolah->delete();

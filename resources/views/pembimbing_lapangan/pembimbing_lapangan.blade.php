@@ -3,12 +3,12 @@
 @section('content')
     <div class="mt-10 mb-20 p-4 sm:ml-64">
         <div class="mb-2 relative overflow-x-auto">
-            @can('tambah-jurusan')
+            @can('tambah-pembimbing-lapangan')
                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="m-2 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5 inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button">
                     <svg class="w-5 h-5 mr-2 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    Tambah Jurusan
+                    Tambah Pembimbing Lapangan
                 </button>
             @endcan
 
@@ -16,7 +16,7 @@
                 <div class="relative mt-4 p-4 w-full max-w-md max-h-full">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Buat Data Jurusan Baru</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Buat Data Pembimbing Lapangan Baru</h3>
                             <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -25,7 +25,7 @@
                             </button>
                         </div>
 
-                        <form class="p-4 md:p-5" action="{{ route('jurusan.store') }}" method="POST">
+                        <form class="p-4 md:p-5" action="{{ route('pembimbing_lapangan.store') }}" method="POST">
                             @csrf
                             @if ($errors->any())
                                 <script>
@@ -42,17 +42,33 @@
 
                             <div class="grid gap-4 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label for="kode" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jurusan</label>
-                                    <input type="text" name="kode" id="kode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Kode Jurusan" required value="{{ old('kode') }}">
-                                    @error('kode')
+                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Sekolah" required value="{{ old('nama') }}">
+                                    @error('nama')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                     @enderror
                                 </div>
 
                                 <div class="col-span-2">
-                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Jurusan:</label>
-                                    <input type="text" name="nama" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Nama Jurusan" required value="{{ old('nama') }}">
-                                    @error('nama')
+                                    <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
+                                    <input type="text" name="alamat" id="alamat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Alamat Sekolah" required value="{{ old('alamat') }}">
+                                    @error('alamat')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-2">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Email Sekolah" required value="{{ old('email') }}">
+                                    @error('email')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-2">
+                                    <label for="telephone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephone</label>
+                                    <input type="text" name="telephone" id="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Telephone Sekolah" required value="{{ old('telephone') }}">
+                                    @error('telephone')
                                         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -93,14 +109,16 @@
                 </div>
             @endif
         </div>
-
+        
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="p-4">
-                <table id="myDataTable" class="min-w-full w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table id="myDataTable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th>Kode</th>
                             <th>Nama</th>
+                            <th>Email</th>
+                            <th>Telephone</th>
+                            <th>Alamat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -119,15 +137,23 @@
             $('#myDataTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('jurusan.index') }}',
+                ajax: '{{ route('pembimbing_lapangan.index') }}',
                 columns: [
-                    {
-                        data: 'kode',
-                        name: 'kode'
-                    },
                     {
                         data: 'nama',
                         name: 'nama'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'telephone',
+                        name: 'telephone'
+                    },
+                    {
+                        data: 'alamat',
+                        name: 'alamat'
                     },
                     {
                         data: 'action',

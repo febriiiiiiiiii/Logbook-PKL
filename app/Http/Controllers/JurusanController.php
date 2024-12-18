@@ -6,19 +6,30 @@ use App\Http\Requests\StoreJurusanRequest;
 use App\Http\Requests\UpdateJurusanRequest;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class JurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         abort_if(!auth()->user()->can('lihat-jurusan'), 403);
 
-        $jurusans = Jurusan::query()->latest()->get();
+        if (!$request->ajax()) {
+            return view('jurusan.jurusan');
+        }
 
-        return view('jurusan.jurusan', compact('jurusans'));
+        $jurusan = Jurusan::query()->latest();
+
+        return DataTables::of($jurusan)
+            ->addIndexColumn()
+            ->addColumn('action', function ($jurusan) {
+                return view('jurusan.action_buttons', compact('jurusan'))->render();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**
@@ -38,7 +49,7 @@ class JurusanController extends Controller
 
         Jurusan::create($request->validated());
 
-        return redirect()->route('jurusan.index')->with('success', 'berhasil membuat data jurusan');
+        return redirect()->route('jurusan.index')->with('success', 'Berhasil menambahkan data jurusan.');
     }
 
     /**
@@ -68,7 +79,7 @@ class JurusanController extends Controller
 
         $jurusan->update($request->validated());
 
-        return redirect()->route('jurusan.index')->with('success', 'Bershasil Update Data');
+        return redirect()->route('jurusan.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -79,11 +90,11 @@ class JurusanController extends Controller
         abort_if(!auth()->user()->can('hapus-jurusan'), 403);
 
         if ($jurusan->jurusanSekolahs()->exists()) {
-            return redirect()->back()->with('error', 'Data tidak dapat  dihapus');
+            return redirect()->back()->with('error', 'Data tidak dapat  dihapus.');
         }
 
         $jurusan->delete();
         
-        return redirect()->route('jurusan.index')->with('success', 'Berhasil menghapus data');
+        return redirect()->route('jurusan.index')->with('success', 'Data berhasil dihapus.');
     }
 }

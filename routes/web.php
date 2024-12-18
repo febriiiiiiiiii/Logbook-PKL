@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PembimbingLapanganController;
 use App\Http\Controllers\ProfileController;
@@ -19,31 +20,32 @@ Route::get('/', function () {
     return view('overview');
 });
 
-Route::get('/dashboard', function () {
-    return view('about');
-})->middleware(['auth']);
+Route::middleware(['auth'])->group(function(){
+    Route::get('/welcome', function () {
+        return view('about');
+    });
+    
+    Route::delete('/jurusan/{jurusan}', [SekolahController::class, 'destroy'])
+        ->middleware('can:hapus-jurusan');
+    
+    Route::resource('sekolah', SekolahController::class)
+        ->except(['destroy']);
+    
+    Route::delete('/sekolah/{sekolah}', [SekolahController::class, 'destroy'])
+        ->name('sekolah.destroy')
+        ->middleware(['can:hapus-sekolah']);
 
-Route::get('/admin', function () {
-    return "<h1>halo admin</h1>";
-})->middleware(['auth', 'role:admin']);
+        
+        
+    Route::resource('angkatan', AngkatanController::class);
+    
+    Route::resource('jurusan', JurusanController::class);
+    
+    Route::resource('pembimbing_lapangan', PembimbingLapanganController::class);    
 
-Route::delete('/jurusan/{jurusan}', [SekolahController::class, 'destroy'])
-    ->middleware('can:hapus-jurusan');
+    Route::singleton('profile', ProfileController::class);
+    
+    Route::resource('sekolah', SekolahController::class);
+    
 
-Route::resource('sekolah', SekolahController::class)
-    ->except(['destroy'])
-    ->middleware(['auth']);
-
-Route::delete('/sekolah/{sekolah}', [SekolahController::class, 'destroy'])
-    ->name('sekolah.destroy')
-    ->middleware(['auth', 'can:hapus-jurusan']);
-
-Route::singleton('profile', ProfileController::class);
-
-Route::resource('jurusan', JurusanController::class);
-
-Route::resource('jurusanserverside', JurusanServersideController::class);
-
-Route::resource('sekolah', SekolahController::class);
-
-Route::resource('pembimbingLapangan', PembimbingLapanganController::class);
+});

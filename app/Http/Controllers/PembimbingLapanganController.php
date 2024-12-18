@@ -6,16 +6,28 @@ use App\Http\Requests\StorePembimbingLapanganRequest;
 use App\Http\Requests\UpdatePembimbingLapanganRequest;
 use App\Models\PembimbingLapangan;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class PembimbingLapanganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pembimbingLapangans = PembimbingLapangan::all();
-        return view('pembimbinglapangan', compact('pembimbingLapangans'));
+        if (!$request->ajax()) {
+            return view('pembimbing_lapangan.pembimbing_lapangan');
+        }
+
+        $pembimbingLapangan = PembimbingLapangan::query()->latest();
+
+        return DataTables::of($pembimbingLapangan)
+            ->addIndexColumn()
+            ->addColumn('action', function ($pembimbingLapangan) {
+                return view('pembimbing_lapangan.action_buttons', compact('pembimbingLapangan'))->render();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**
@@ -33,7 +45,7 @@ class PembimbingLapanganController extends Controller
     {
         PembimbingLapangan::crete($request->validated());
 
-        return redirect()->route('pembimbingLapangan.index');
+        return redirect()->route('pembimbing_lapangan.index');
     }
 
     /**
@@ -49,7 +61,7 @@ class PembimbingLapanganController extends Controller
      */
     public function edit(PembimbingLapangan $pembimbingLapangan)
     {
-        return view('editPembimbingLapangan', compact('pembimbingLapangan'));
+        return view('pembimbing_lapangan.edit_pembimbing_lapangan', compact('pembimbingLapangan'));
     }
 
     /**
@@ -59,7 +71,7 @@ class PembimbingLapanganController extends Controller
     {
         $pembimbingLapangan->update($request->validated());
 
-        return redirect()->route('pembimbingLapangan.index');
+        return redirect()->route('pembimbing_lapangan.index');
     }
 
     /**
@@ -69,6 +81,6 @@ class PembimbingLapanganController extends Controller
     {
         $pembimbingLapangan->delete();
 
-        return redirect()->route('pembimbingLapangan.index');
+        return redirect()->route('pembimbing_lapangan.index');
     }
 }

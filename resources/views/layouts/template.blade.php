@@ -22,6 +22,8 @@
 
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
 
+    <script src="{{ asset('js/app.js') }}"></script>
+
     @yield('scripts')
 
 </body>
